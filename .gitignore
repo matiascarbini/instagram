@@ -1,0 +1,8 @@
+
+
+bin
+lib
+pyvenv.cfg
+*.pyc
+result/input.csv
+result/result.csv
