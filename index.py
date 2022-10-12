@@ -1,14 +1,23 @@
+import sys
+import json
 from itertools import islice
-from math import ceil
-
 from instaloader import Instaloader, Profile
 
-PROFILE = 'mueblestables'
+PROFILE = sys.argv[1]
 
 L = Instaloader()
 
 profile = Profile.from_username(L.context, PROFILE)
 posts = profile.get_posts()
 
-for post in islice(posts, 8):
-  print(post.url)
+aPost = []
+for post in islice(posts, 8):  
+  aPost.append({
+    "caption": post.caption,
+    "image": post.url,
+    "shortcode": "https://instagram.com/p/" + post.shortcode
+  })
+
+jsonStr = json.dumps(aPost)
+
+print(jsonStr)
